@@ -327,8 +327,9 @@ local script = G2L["1b"];
 							if v:FindFirstChild("ProximityPrompt") then
 								v.Anchored = true
 								task.wait(1)
+								v.CFrame = CFrame.new(ply.Position + Vector3.new(0, 3, 0))
+								task.wait(1)
 								v.Anchored = false
-								v.CFrame = CFrame.new(ply.Position + Vector3.new(0, 2, 0))
 								task.wait(1)
 	
 								if v.CanCollide then
