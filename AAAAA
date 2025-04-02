@@ -363,7 +363,7 @@ task.spawn(C_1b);
 -- StarterGui.AmaxGUI.HideBT.Button_Hide
 local function C_1d()
 local script = G2L["1d"];
-	script.Parent.InputBegan:Connect(function ()
+	script.Parent.MouseButton1Click:Connect(function (i)
 		local Menu = script.Parent.Parent.Frame
 		if Menu.Visible ~= true then
 			Menu.Visible = true
