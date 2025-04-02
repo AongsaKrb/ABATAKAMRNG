@@ -1,56 +1,393 @@
-script.Parent.Changed:Connect(function()
-	local targetValue = script.Parent.Value
+--[=[
+ d888b  db    db d888888b      .d888b.      db      db    db  .d8b.  
+88' Y8b 88    88   `88'        VP  `8D      88      88    88 d8' `8b 
+88      88    88    88            odD'      88      88    88 88ooo88 
+88  ooo 88    88    88          .88'        88      88    88 88~~~88 
+88. ~8~ 88b  d88   .88.        j88.         88booo. 88b  d88 88   88    @uniquadev
+ Y888P  ~Y8888P' Y888888P      888888D      Y88888P ~Y8888P' YP   YP  CONVERTER 
+]=]
 
-	if targetValue == true then
-		local running = true
+-- Instances: 32 | Scripts: 6 | Modules: 0 | Tags: 0
+local G2L = {};
 
-		task.spawn(function()
-			while running do
-				task.spawn(function()
-					local Players = game:GetService("Players")
-					local ply = Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
+-- StarterGui.AmaxGUI
+G2L["1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"));
+G2L["1"]["Name"] = [[AmaxGUI]];
+G2L["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
+G2L["1"]["ResetOnSpawn"] = false;
 
-					for _, v in pairs(workspace.NaturalIemSpawn.Objects:GetChildren()) do
-						if v:FindFirstChild("ProximityPrompt") then
-							v.Anchored = true
-							task.wait(1)
-							v.CFrame = CFrame.new(ply.Position + Vector3.new(0, 3, 0))
-							task.wait(0.1)
-							v.Anchored = false
-							task.wait(1)
 
-							if v.CanCollide then
-								for _, pp in pairs(workspace.NaturalIemSpawn.Objects:GetDescendants()) do
-									local prompt = pp:FindFirstChild("ProximityPrompt")
-									if prompt and prompt.Enabled then
-										for i = 1, 10 do
-											pcall(function()
-												fireproximityprompt(prompt)
-											end)
-											task.wait(0.1)
-										end
+-- StarterGui.AmaxGUI.Frame
+G2L["2"] = Instance.new("Frame", G2L["1"]);
+G2L["2"]["Active"] = true;
+G2L["2"]["BorderSizePixel"] = 0;
+G2L["2"]["BackgroundColor3"] = Color3.fromRGB(41, 41, 41);
+G2L["2"]["Size"] = UDim2.new(0, 107, 0, 393);
+G2L["2"]["Position"] = UDim2.new(0.46733, 0, 0.22666, 0);
+G2L["2"]["BorderColor3"] = Color3.fromRGB(23, 23, 23);
 
-										if prompt:IsDescendantOf(workspace) and prompt.Enabled then
-											pp.CFrame = pp.CFrame + Vector3.new(0, 10, 0)
+
+-- StarterGui.AmaxGUI.Frame.UIDragDetector
+G2L["3"] = Instance.new("UIDragDetector", G2L["2"]);
+
+
+
+-- StarterGui.AmaxGUI.Frame.Menu
+G2L["4"] = Instance.new("StringValue", G2L["2"]);
+G2L["4"]["Name"] = [[Menu]];
+G2L["4"]["Value"] = [[General]];
+
+
+-- StarterGui.AmaxGUI.Frame.Menu.MenuStatus
+G2L["5"] = Instance.new("LocalScript", G2L["4"]);
+G2L["5"]["Name"] = [[MenuStatus]];
+
+
+-- StarterGui.AmaxGUI.Frame.UICorner
+G2L["6"] = Instance.new("UICorner", G2L["2"]);
+
+
+
+-- StarterGui.AmaxGUI.Frame.ScrollingFrame
+G2L["7"] = Instance.new("ScrollingFrame", G2L["2"]);
+G2L["7"]["Active"] = true;
+G2L["7"]["BorderSizePixel"] = 0;
+G2L["7"]["BackgroundColor3"] = Color3.fromRGB(41, 41, 41);
+G2L["7"]["Size"] = UDim2.new(0, 100, 0, 374);
+G2L["7"]["Position"] = UDim2.new(0.02804, 0, 0.0229, 0);
+G2L["7"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["7"]["ScrollBarThickness"] = 0;
+G2L["7"]["BackgroundTransparency"] = 1;
+
+
+-- StarterGui.AmaxGUI.Frame.ScrollingFrame.General
+G2L["8"] = Instance.new("TextButton", G2L["7"]);
+G2L["8"]["BorderSizePixel"] = 0;
+G2L["8"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["8"]["TextSize"] = 14;
+G2L["8"]["BackgroundColor3"] = Color3.fromRGB(36, 36, 36);
+G2L["8"]["FontFace"] = Font.new([[rbxasset://fonts/families/Arial.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["8"]["Size"] = UDim2.new(0, 107, 0, 35);
+G2L["8"]["Name"] = [[General]];
+G2L["8"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["8"]["Text"] = [[General]];
+G2L["8"]["Position"] = UDim2.new(-0.03, 0, 0, 0);
+
+
+-- StarterGui.AmaxGUI.Frame.ScrollingFrame.General.SetGeneral
+G2L["9"] = Instance.new("LocalScript", G2L["8"]);
+G2L["9"]["Name"] = [[SetGeneral]];
+
+
+-- StarterGui.AmaxGUI.Frame.ScrollingFrame.General.UICorner
+G2L["a"] = Instance.new("UICorner", G2L["8"]);
+G2L["a"]["CornerRadius"] = UDim.new(0, 10);
+
+
+-- StarterGui.AmaxGUI.Frame.ScrollingFrame.UIListLayout
+G2L["b"] = Instance.new("UIListLayout", G2L["7"]);
+G2L["b"]["HorizontalAlignment"] = Enum.HorizontalAlignment.Center;
+G2L["b"]["Padding"] = UDim.new(0.005, 0);
+G2L["b"]["SortOrder"] = Enum.SortOrder.LayoutOrder;
+
+
+-- StarterGui.AmaxGUI.Frame.Frame
+G2L["c"] = Instance.new("Frame", G2L["2"]);
+G2L["c"]["Active"] = true;
+G2L["c"]["BorderSizePixel"] = 0;
+G2L["c"]["BackgroundColor3"] = Color3.fromRGB(41, 41, 41);
+G2L["c"]["Size"] = UDim2.new(0, 521, 0, 393);
+G2L["c"]["Position"] = UDim2.new(-1.04123, 226, -0.4445, 174);
+G2L["c"]["BorderColor3"] = Color3.fromRGB(23, 23, 23);
+
+
+-- StarterGui.AmaxGUI.Frame.Frame.UICorner
+G2L["d"] = Instance.new("UICorner", G2L["c"]);
+
+
+
+-- StarterGui.AmaxGUI.Frame.Frame.General
+G2L["e"] = Instance.new("Folder", G2L["c"]);
+G2L["e"]["Name"] = [[General]];
+
+
+-- StarterGui.AmaxGUI.Frame.Frame.General.ScrollingFrame
+G2L["f"] = Instance.new("ScrollingFrame", G2L["e"]);
+G2L["f"]["Active"] = true;
+G2L["f"]["BorderSizePixel"] = 0;
+G2L["f"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["f"]["ScrollBarImageTransparency"] = 1;
+G2L["f"]["Size"] = UDim2.new(0, 521, 0, 391);
+G2L["f"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["f"]["BackgroundTransparency"] = 1;
+
+
+-- StarterGui.AmaxGUI.Frame.Frame.General.ScrollingFrame.General
+G2L["10"] = Instance.new("TextLabel", G2L["f"]);
+G2L["10"]["TextWrapped"] = true;
+G2L["10"]["Active"] = true;
+G2L["10"]["BorderSizePixel"] = 0;
+G2L["10"]["TextSize"] = 39;
+G2L["10"]["TextScaled"] = true;
+G2L["10"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["10"]["FontFace"] = Font.new([[rbxasset://fonts/families/ComicNeueAngular.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["10"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["10"]["BackgroundTransparency"] = 1;
+G2L["10"]["Size"] = UDim2.new(0, 200, 0, 28);
+G2L["10"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["10"]["Text"] = [[General]];
+G2L["10"]["Name"] = [[General]];
+G2L["10"]["Position"] = UDim2.new(0.307, 0, 0.01, 0);
+
+
+-- StarterGui.AmaxGUI.Frame.Frame.General.ScrollingFrame.AutoKeep
+G2L["11"] = Instance.new("Frame", G2L["f"]);
+G2L["11"]["Active"] = true;
+G2L["11"]["BorderSizePixel"] = 0;
+G2L["11"]["BackgroundColor3"] = Color3.fromRGB(84, 84, 84);
+G2L["11"]["Size"] = UDim2.new(0, 494, 0, 28);
+G2L["11"]["Position"] = UDim2.new(0.02308, 0, 0.05187, 0);
+G2L["11"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["11"]["Name"] = [[AutoKeep]];
+G2L["11"]["BackgroundTransparency"] = 0.7;
+
+
+-- StarterGui.AmaxGUI.Frame.Frame.General.ScrollingFrame.AutoKeep.UICorner
+G2L["12"] = Instance.new("UICorner", G2L["11"]);
+
+
+
+-- StarterGui.AmaxGUI.Frame.Frame.General.ScrollingFrame.AutoKeep.Button
+G2L["13"] = Instance.new("TextButton", G2L["11"]);
+G2L["13"]["BorderSizePixel"] = 0;
+G2L["13"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["13"]["TextSize"] = 14;
+G2L["13"]["BackgroundColor3"] = Color3.fromRGB(122, 0, 0);
+G2L["13"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["13"]["Size"] = UDim2.new(0, 83, 0, 29);
+G2L["13"]["Name"] = [[Button]];
+G2L["13"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["13"]["Text"] = [[]];
+G2L["13"]["Position"] = UDim2.new(0.82915, 0, -0.00037, 0);
+
+
+-- StarterGui.AmaxGUI.Frame.Frame.General.ScrollingFrame.AutoKeep.Button.UICorner
+G2L["14"] = Instance.new("UICorner", G2L["13"]);
+
+
+
+-- StarterGui.AmaxGUI.Frame.Frame.General.ScrollingFrame.AutoKeep.Button.ToggleCheck
+G2L["15"] = Instance.new("LocalScript", G2L["13"]);
+G2L["15"]["Name"] = [[ToggleCheck]];
+
+
+-- StarterGui.AmaxGUI.Frame.Frame.General.ScrollingFrame.AutoKeep.AutoKeep
+G2L["16"] = Instance.new("TextLabel", G2L["11"]);
+G2L["16"]["Active"] = true;
+G2L["16"]["BorderSizePixel"] = 0;
+G2L["16"]["TextSize"] = 14;
+G2L["16"]["TextXAlignment"] = Enum.TextXAlignment.Left;
+G2L["16"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["16"]["FontFace"] = Font.new([[rbxasset://fonts/families/Arial.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["16"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["16"]["BackgroundTransparency"] = 1;
+G2L["16"]["Size"] = UDim2.new(0, 200, 0, 28);
+G2L["16"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["16"]["Text"] = [[AutoKeep]];
+G2L["16"]["Name"] = [[AutoKeep]];
+G2L["16"]["Position"] = UDim2.new(0.01417, 0, 0, 0);
+
+
+-- StarterGui.AmaxGUI.Frame.Drag
+G2L["17"] = Instance.new("ImageLabel", G2L["2"]);
+G2L["17"]["BorderSizePixel"] = 0;
+G2L["17"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["17"]["Image"] = [[rbxassetid://80393663771607]];
+G2L["17"]["Size"] = UDim2.new(0, 20, 0, 20);
+G2L["17"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["17"]["BackgroundTransparency"] = 1;
+G2L["17"]["Name"] = [[Drag]];
+G2L["17"]["Position"] = UDim2.new(0, 0, 0.94656, 0);
+
+
+-- StarterGui.AmaxGUI.ToggleDetectFeature
+G2L["18"] = Instance.new("Folder", G2L["1"]);
+G2L["18"]["Name"] = [[ToggleDetectFeature]];
+
+
+-- StarterGui.AmaxGUI.ToggleDetectFeature.General
+G2L["19"] = Instance.new("Folder", G2L["18"]);
+G2L["19"]["Name"] = [[General]];
+
+
+-- StarterGui.AmaxGUI.ToggleDetectFeature.General.AutoKeep
+G2L["1a"] = Instance.new("BoolValue", G2L["19"]);
+G2L["1a"]["Name"] = [[AutoKeep]];
+
+
+-- StarterGui.AmaxGUI.ToggleDetectFeature.General.AutoKeep.AutoKeep
+G2L["1b"] = Instance.new("LocalScript", G2L["1a"]);
+G2L["1b"]["Name"] = [[AutoKeep]];
+
+
+-- StarterGui.AmaxGUI.HideBT
+G2L["1c"] = Instance.new("ImageButton", G2L["1"]);
+G2L["1c"]["BorderSizePixel"] = 0;
+G2L["1c"]["ScaleType"] = Enum.ScaleType.Fit;
+G2L["1c"]["BackgroundColor3"] = Color3.fromRGB(58, 58, 58);
+G2L["1c"]["Image"] = [[http://www.roblox.com/asset/?id=101996382773244]];
+G2L["1c"]["Size"] = UDim2.new(0, 52, 0, 51);
+G2L["1c"]["Name"] = [[HideBT]];
+G2L["1c"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["1c"]["Position"] = UDim2.new(0.94403, 0, 0.42176, 0);
+
+
+-- StarterGui.AmaxGUI.HideBT.Button_Hide
+G2L["1d"] = Instance.new("LocalScript", G2L["1c"]);
+G2L["1d"]["Name"] = [[Button_Hide]];
+
+
+-- StarterGui.AmaxGUI.HideBT.UICorner
+G2L["1e"] = Instance.new("UICorner", G2L["1c"]);
+G2L["1e"]["CornerRadius"] = UDim.new(0.1, 0);
+
+
+-- StarterGui.AmaxGUI.UIAspectRatioConstraint
+G2L["1f"] = Instance.new("UIAspectRatioConstraint", G2L["1"]);
+G2L["1f"]["AspectRatio"] = 1.46333;
+
+
+-- StarterGui.AmaxGUI.LocalScript
+G2L["20"] = Instance.new("LocalScript", G2L["1"]);
+
+
+
+-- StarterGui.AmaxGUI.Frame.Menu.MenuStatus
+local function C_5()
+local script = G2L["5"];
+	local catalog = script.Parent.Parent.Frame
+	
+	local function resetmenu()
+		catalog.General.ScrollingFrame.Visible = false
+	end
+	
+	script.Parent.Changed:Connect(function (Value)
+		print("Receive")
+		if Value == "General" then
+			resetmenu()
+			catalog.General.ScrollingFrame.Visible = true
+		end
+	end)
+end;
+task.spawn(C_5);
+-- StarterGui.AmaxGUI.Frame.ScrollingFrame.General.SetGeneral
+local function C_9()
+local script = G2L["9"];
+	local Menu = script.Parent.Parent.Parent.Menu
+	
+	script.Parent.MouseButton1Click:Connect(function ()
+		Menu.Value = "General"
+		print(Menu)
+	end)
+end;
+task.spawn(C_9);
+-- StarterGui.AmaxGUI.Frame.Frame.General.ScrollingFrame.AutoKeep.Button.ToggleCheck
+local function C_15()
+local script = G2L["15"];
+	local General = script.Parent.Parent.Parent.Parent.Parent.Parent.Parent.ToggleDetectFeature.General
+	local ESP = General.AutoKeep
+	
+	script.Parent.Activated:Connect(function ()
+		if ESP.Value == false then
+			ESP.Value = true
+			script.Parent.BackgroundColor3 = Color3.fromRGB(0, 91, 6)
+		elseif ESP.Value == true then
+			ESP.Value = false
+			script.Parent.BackgroundColor3 = Color3.fromRGB(121, 0, 0)
+		end
+	end)
+end;
+task.spawn(C_15);
+-- StarterGui.AmaxGUI.ToggleDetectFeature.General.AutoKeep.AutoKeep
+local function C_1b()
+local script = G2L["1b"];
+	script.Parent.Changed:Connect(function()
+		local targetValue = script.Parent.Value
+	
+		if targetValue == true then
+			local running = true
+	
+			task.spawn(function()
+				while running do
+					task.spawn(function()
+						local Players = game:GetService("Players")
+						local ply = Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
+	
+						for _, v in pairs(workspace.NaturalIemSpawn.Objects:GetChildren()) do
+							if v:FindFirstChild("ProximityPrompt") then
+								v.Anchored = true
+								task.wait(1)
+								v.CFrame = CFrame.new(ply.Position + Vector3.new(0, 3, 0))
+								task.wait(0.1)
+								v.Anchored = false
+								task.wait(1)
+	
+								if v.CanCollide then
+									for _, pp in pairs(workspace.NaturalIemSpawn.Objects:GetDescendants()) do
+										local prompt = pp:FindFirstChild("ProximityPrompt")
+										if prompt and prompt.Enabled then
+											for i = 1, 10 do
+												pcall(function()
+													fireproximityprompt(prompt)
+												end)
+												task.wait(0.1)
+											end
+	
+											if prompt:IsDescendantOf(workspace) and prompt.Enabled then
+												pp.CFrame = pp.CFrame + Vector3.new(0, 10, 0)
+											end
 										end
 									end
+									task.wait(5)
 								end
 								task.wait(5)
+								v.Anchored = true
+								break
 							end
-							task.wait(5)
-							v.Anchored = true
-							break
 						end
-					end
-				end)
-
-				task.wait(0.5) -- เว้นช่วงก่อน spawn รอบถัดไป
+					end)
+	
+					task.wait(0.5) -- เว้นช่วงก่อน spawn รอบถัดไป
+				end
+			end)
+	
+			script.Parent.Changed:Wait()
+			if script.Parent.Value == false then
+				running = false
 			end
-		end)
-
-		script.Parent.Changed:Wait()
-		if script.Parent.Value == false then
-			running = false
 		end
-	end
-end)
+	end)
+	
+end;
+task.spawn(C_1b);
+-- StarterGui.AmaxGUI.HideBT.Button_Hide
+local function C_1d()
+local script = G2L["1d"];
+	script.Parent.MouseButton1Click:Connect(function (i)
+		local Menu = script.Parent.Parent.Frame
+		if Menu.Visible ~= true then
+			Menu.Visible = true
+		else
+			Menu.Visible = false
+		end
+	end)
+end;
+task.spawn(C_1d);
+-- StarterGui.AmaxGUI.LocalScript
+local function C_20()
+local script = G2L["20"];
+	script.Parent.Frame.Position = Vector3.new(0,0,0)
+end;
+task.spawn(C_20);
+
+return G2L["1"], require;
