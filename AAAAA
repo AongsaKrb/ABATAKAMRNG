@@ -352,6 +352,8 @@ local script = G2L["1b"];
 								end
 								task.wait(5)
 								v.Anchored = true
+								task.wait(30)
+								v:Destroy()
 								break
 							end
 						end
