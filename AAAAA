@@ -23,7 +23,7 @@ G2L["2"]["Active"] = true;
 G2L["2"]["BorderSizePixel"] = 0;
 G2L["2"]["BackgroundColor3"] = Color3.fromRGB(41, 41, 41);
 G2L["2"]["Size"] = UDim2.new(0, 107, 0, 393);
-G2L["2"]["Position"] = UDim2.new(-0.00051, 0, -0.00072, 0);
+G2L["2"]["Position"] = UDim2.new(0.24594, 0, 0.21199, 0);
 G2L["2"]["BorderColor3"] = Color3.fromRGB(23, 23, 23);
 
 
